@@ -9,6 +9,7 @@ public class UserMappingExtention:Profile
 
     public UserMappingExtention()
     {
-        CreateMap<User, UserDomain>();
+        CreateMap<User, UserDomain>().ReverseMap();
+        
     }
 }

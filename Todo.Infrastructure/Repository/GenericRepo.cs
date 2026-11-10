@@ -11,8 +11,8 @@ public class GenericRepo<TDomain,TEntity>:IGenaricRepo<TDomain>
     where TEntity :class
 {
     
-    private readonly TodoAppDbContext _dbContext;
-    private readonly IMapper _mapper;
+    protected readonly TodoAppDbContext _dbContext;
+    protected readonly IMapper _mapper;
     
 
     public GenericRepo(TodoAppDbContext dbContext, IMapper mapper)
@@ -41,8 +41,8 @@ public class GenericRepo<TDomain,TEntity>:IGenaricRepo<TDomain>
         await _dbContext.Set<TEntity>().AddAsync(entity);
     }
 
-    public Task<int> CommitAsync()
+    public async Task<int> CommitAsync()
     {
-        throw new NotImplementedException();
+        return await _dbContext.SaveChangesAsync();
     }
 }
